@@ -2,6 +2,8 @@ package com.spring;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 //@Table(name="alien_table")
 public class Alien {
@@ -12,7 +14,12 @@ public class Alien {
     private String Aname;
    // @Transient   //uses if you don't want this field to be add as column in table
     private String Tech;
-    private Laptop laptop;
+//    @OneToOne
+//    private Laptop laptop;
+//    @OneToMany(mappedBy = "alien")
+    @ManyToMany
+    private List<Laptop> laptops;
+
 
     @Override
     public String toString() {
@@ -20,16 +27,16 @@ public class Alien {
                 "Aid=" + Aid +
                 ", Aname='" + Aname + '\'' +
                 ", Tech='" + Tech + '\'' +
-                ", laptop=" + laptop +
+                ", laptop=" + laptops +
                 '}';
     }
 
-    public Laptop getLaptop() {
-        return laptop;
+    public List<Laptop> getLaptops() {
+        return laptops;
     }
 
-    public void setLaptop(Laptop laptop) {
-        this.laptop = laptop;
+    public void setLaptops(List<Laptop> laptops) {
+        this.laptops = laptops;
     }
 
     public int getAid() {
